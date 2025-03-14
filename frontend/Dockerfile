@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 7860
 
-CMD ["python", "frontend.py"]
+CMD ["python", "app.py"]

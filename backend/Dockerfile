@@ -1,22 +1,16 @@
-FROM python:3.9-slim-buster
+FROM python:3.12-slim
 
-WORKDIR /app
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3-pip \
+    python3-setuptools \
+    && rm -rf /var/lib/apt/lists/*
 
-COPY requirements_frontend.txt .
-RUN pip install --no-cache-dir -r requirements_frontend.txt
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 
-COPY frontend.py .
+COPY . /usr/src/app
+WORKDIR /usr/src/app
 
-CMD ["python", "frontend.py"]
+EXPOSE 7861
 
-# Dockerfile for Backend
-FROM python:3.9-slim-buster
-
-WORKDIR /app
-
-COPY requirements_backend.txt .
-RUN pip install --no-cache-dir -r requirements_backend.txt
-
-COPY backend.py .
-
-CMD ["uvicorn", "backend:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["python3", "app.py"]
