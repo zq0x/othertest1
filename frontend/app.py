@@ -47,9 +47,9 @@ class GradioFrontend:
         return self.progress_text, gr.Button("Run")
 
     def launch_ui(self):
-        inputs = [gr.Textbox(label="Input 1", default_value="Hello"),
-                  gr.Number(label="Input 2", default_value=123),
-                  gr.Checkbox(label="Input 3", default_value=True)]
+        inputs = [gr.Textbox(label="Input 1", value="Hello"),  # Use 'value' instead of 'default_value'
+                  gr.Number(label="Input 2", value=123),      # Use 'value' instead of 'default_value'
+                  gr.Checkbox(label="Input 3", value=True)]    # Use 'value' instead of 'default_value'
 
         with gr.Blocks() as demo:
             gr.Markdown("# Gradio Frontend with FastAPI Backend")
